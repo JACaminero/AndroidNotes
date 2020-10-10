@@ -1,4 +1,4 @@
-package com.example.taskketchum.database
+package com.example.taskketchum.data
 
 import com.example.taskketchum.Model.Task
 import com.example.taskketchum.Model.TaskDao

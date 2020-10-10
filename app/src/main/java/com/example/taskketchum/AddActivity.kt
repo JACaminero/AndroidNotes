@@ -14,8 +14,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.taskketchum.Model.Task
 import com.example.taskketchum.fragments.DatePickerFragment
-import com.example.taskketchum.database.TaskViewModel
-import org.w3c.dom.Text
+import com.example.taskketchum.data.TaskViewModel
 
 class AddActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
@@ -26,6 +25,10 @@ class AddActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         setContentView(R.layout.activity_add)
         taskViewModel = ViewModelProvider(this@AddActivity).get(TaskViewModel::class.java)
 
+        val bl =intent.extras
+        var id=bl?.getString("id")
+
+        Toast.makeText(this, id, Toast.LENGTH_SHORT).show()
         findViewById<Button>(R.id.btn_save).setOnClickListener {
             var title =  findViewById<TextView>(R.id.txt_title).text.toString()
             var description =  findViewById<TextView>(R.id.txtDescription).text.toString()
@@ -45,7 +48,6 @@ class AddActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                 Toast.makeText(this, ":(", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
     fun nullValidation(words: Array<String>) : Boolean {

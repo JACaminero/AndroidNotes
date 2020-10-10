@@ -9,7 +9,7 @@ import com.example.taskketchum.Model.Task
 import com.example.taskketchum.R
 import kotlinx.android.synthetic.main.row_layout.view.*
 
-class TaskListAdapter : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
+class TaskListAdapter(val onClickListener: (Task) -> Unit) : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
 
     private var taskList = emptyList<Task>()
     class TaskViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -30,6 +30,9 @@ class TaskListAdapter : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
         holder.itemView.tv_date.text = currentItem.date.toString()
         holder.itemView.tv_id.text = currentItem.taskId.toString()
 
+        holder.itemView.setOnClickListener { view ->
+            onClickListener(currentItem)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -9,7 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.taskketchum.database.TaskViewModel
+import com.example.taskketchum.Model.Task
+import com.example.taskketchum.data.TaskViewModel
 import com.example.taskketchum.fragments.TaskListAdapter
 
 
@@ -26,11 +27,17 @@ class MainActivity : AppCompatActivity() {
         val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager(this)
         recView.layoutManager = layoutManager
 
-        val adapter = TaskListAdapter()
+        val adapter = TaskListAdapter(onClickListener = this::onRecyclerClick)
         recView.adapter = adapter
 
         taskViewModel = ViewModelProvider(this@MainActivity).get(TaskViewModel::class.java)
         taskViewModel.tasks.observe(this, Observer { task -> adapter.setData(task) })
+    }
+
+    private fun onRecyclerClick(task: Task) {
+        val intent = Intent(this@MainActivity, AddActivity::class.java)
+        intent.putExtra("id", task.taskId)
+        this@MainActivity.startActivity(intent)
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {

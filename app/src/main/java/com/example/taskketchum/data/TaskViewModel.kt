@@ -1,4 +1,4 @@
-package com.example.taskketchum.database
+package com.example.taskketchum.data
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
