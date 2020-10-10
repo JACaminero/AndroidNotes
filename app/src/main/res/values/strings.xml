@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TaskKetchum</string>
+    <string name="btn_save">Guardar</string>
+    <string name="btn_date_picker">Fecha</string>
+    <string name="txt_fecha">__-__-____</string>
+    <string name="action_add">Añadir</string>
+</resources>
