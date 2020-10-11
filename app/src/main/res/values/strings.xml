@@ -7,4 +7,6 @@
     <string name="login">Log in</string>
     <string name="ingresar">Ingresar</string>
     <string name="action_add">add</string>
+    <string name="btn_update">Actualizar</string>
+    <string name="et_title">Titulo</string>
 </resources>

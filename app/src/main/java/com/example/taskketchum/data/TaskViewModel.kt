@@ -7,8 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.taskketchum.Model.Task
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.Serializable
+import java.util.*
 
-class TaskViewModel (application: Application) : AndroidViewModel(application) {
+class TaskViewModel (application: Application) : AndroidViewModel(application), Serializable  {
     private val repository: TaskRepository
     val tasks: LiveData<List<Task>>
 
@@ -18,12 +20,11 @@ class TaskViewModel (application: Application) : AndroidViewModel(application) {
         tasks = repository.tasks
     }
 
-
-//    fun getById(id: Int) : LiveData<Task> {
-//        return repository.getById(id)
-//    }
-
     fun insert(task: Task) = viewModelScope.launch(Dispatchers.IO) {
         repository.insert(task)
+    }
+
+    fun update(task: Task) = viewModelScope.launch(Dispatchers.IO) {
+        repository.update(task)
     }
 }

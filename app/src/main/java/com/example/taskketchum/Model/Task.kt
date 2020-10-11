@@ -2,6 +2,8 @@ package com.example.taskketchum.Model
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import java.io.Serializable
+
 
 @Entity (tableName = "Task")
 data class Task (
@@ -21,4 +23,7 @@ interface TaskDao {
 
     @Insert
     fun insert(task: Task)
+
+    @Update
+    fun update(task: Task)
 }

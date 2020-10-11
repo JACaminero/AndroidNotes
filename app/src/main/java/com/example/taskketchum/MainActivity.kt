@@ -7,9 +7,11 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.taskketchum.Model.Task
+import com.example.taskketchum.Model.TaskVM
 import com.example.taskketchum.data.TaskViewModel
 import com.example.taskketchum.fragments.TaskListAdapter
 
@@ -20,12 +22,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//       appbar
         setSupportActionBar(findViewById(R.id.my_toolbar))
 
         val recView = findViewById<RecyclerView>(R.id.recycler_view)
         val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager(this)
         recView.layoutManager = layoutManager
+
+        recView.addItemDecoration(
+            DividerItemDecoration(
+                recView.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
 
         val adapter = TaskListAdapter(onClickListener = this::onRecyclerClick)
         recView.adapter = adapter
@@ -35,8 +43,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onRecyclerClick(task: Task) {
+        var vm = TaskVM(task.taskId, task.title, task.description, task.date)
         val intent = Intent(this@MainActivity, AddActivity::class.java)
-        intent.putExtra("id", task.taskId)
+        intent.putExtra("object", vm)
         this@MainActivity.startActivity(intent)
     }
 

@@ -10,11 +10,11 @@ class TaskRepository(private val taskDao: TaskDao) {
     // Observed LiveData will notify the observer when the data has changed.
     val tasks: LiveData1<List<Task>> = taskDao.getAll()
 
-    suspend fun getById(id: Int) : LiveData1<Task> {
-        return taskDao.getById(id)
-    }
-
     suspend fun insert(task: Task) {
         taskDao.insert(task)
+    }
+
+    suspend fun update(task:Task) {
+        taskDao.update(task)
     }
 }
