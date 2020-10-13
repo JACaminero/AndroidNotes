@@ -6,6 +6,7 @@ import android.os.Bundle/*
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room*/
+import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
@@ -25,10 +26,6 @@ class AddActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         setContentView(R.layout.activity_add)
         taskViewModel = ViewModelProvider(this@AddActivity).get(TaskViewModel::class.java)
 
-        val bl =intent.extras
-        var id=bl?.getString("id")
-
-        Toast.makeText(this, id, Toast.LENGTH_SHORT).show()
         findViewById<Button>(R.id.btn_save).setOnClickListener {
             var title =  findViewById<TextView>(R.id.txt_title).text.toString()
             var description =  findViewById<TextView>(R.id.txtDescription).text.toString()
@@ -50,7 +47,7 @@ class AddActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         }
     }
 
-    fun nullValidation(words: Array<String>) : Boolean {
+    private fun nullValidation(words: Array<String>) : Boolean {
         for (word in words) {
             if (word.isNullOrBlank() || word.isNullOrEmpty()) {
                 return false;

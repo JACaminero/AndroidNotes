@@ -9,4 +9,7 @@
     <string name="action_add">add</string>
     <string name="btn_update">Actualizar</string>
     <string name="et_title">Titulo</string>
+    <string name="action_delete">Delete</string>
+    <string name="yes">Si</string>
+    <string name="cancel">Cancelar</string>
 </resources>

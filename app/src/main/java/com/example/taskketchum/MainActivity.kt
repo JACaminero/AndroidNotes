@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.my_toolbar))
+//        setSupportActionBar(findViewById(R.id.add_toolbar))
 
         val recView = findViewById<RecyclerView>(R.id.recycler_view)
         val layoutManager : RecyclerView.LayoutManager = LinearLayoutManager(this)
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun onRecyclerClick(task: Task) {
         var vm = TaskVM(task.taskId, task.title, task.description, task.date)
-        val intent = Intent(this@MainActivity, AddActivity::class.java)
+        val intent = Intent(this@MainActivity, UpdateActivity::class.java)
         intent.putExtra("object", vm)
         this@MainActivity.startActivity(intent)
     }

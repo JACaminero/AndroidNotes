@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -26,6 +27,9 @@ class LoginActivity : AppCompatActivity() {
         if (username == "Holascupido" && password == "Holas123") {
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
             this@LoginActivity.startActivity(intent)
+        }
+        else {
+            Toast.makeText(this, "Datos Incorretos", Toast.LENGTH_SHORT).show()
         }
     }
 }
