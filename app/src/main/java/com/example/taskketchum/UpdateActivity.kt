@@ -3,6 +3,7 @@ package com.example.taskketchum
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -28,11 +29,11 @@ class UpdateActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
         task = intent.getSerializableExtra("object") as TaskVM
         fillFields(task.title, task.description, task.date)
 
-        findViewById<Button>(R.id.button2_upd).setOnClickListener{ view ->
+        findViewById<Button>(R.id.button2_upd).setOnClickListener { view ->
             showTimePickerDialog(view)
         }
 
-        findViewById<Button>(R.id.btn_save_upd).setOnClickListener{
+        findViewById<Button>(R.id.btn_save_upd).setOnClickListener {
             updateTask(task.id)
         }
     }
@@ -59,6 +60,7 @@ class UpdateActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
             txtDate.text.toString() as String?
         )
         taskViewModel.update(newTask)
+        Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
     }
 
     fun showTimePickerDialog(v: View) {
@@ -87,6 +89,8 @@ class UpdateActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                 .setTitle("Obliterate")
                 .setPositiveButton(R.string.yes) { dialog, which ->
                     deleteTask(task.id)
+                    val intent = Intent(this, MainActivity::class.java)
+                    this.startActivity(intent)
                     Toast.makeText(this, "Terminated Successfully", Toast.LENGTH_SHORT).show()
                 }
                 .setNegativeButton(R.string.cancel) { d, w -> }
